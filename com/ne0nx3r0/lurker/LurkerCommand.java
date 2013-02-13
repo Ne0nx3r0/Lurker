@@ -1,6 +1,5 @@
 package com.ne0nx3r0.lurker;
 
-import com.ne0nx3r0.lurker.Lurker;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,6 +31,19 @@ public class LurkerCommand implements CommandExecutor
             cs.sendMessage("/lurk <playername> Message here");
             cs.sendMessage("/lurk <playername> &DARK_REDColored message!");
             cs.sendMessage("/lurk all Message!");
+            
+            String sColors = "";
+            
+            for(ChatColor cc : ChatColor.values())
+            {
+                sColors += cc + cc.toString().toLowerCase() + ChatColor.WHITE + ", ";
+            }
+            
+            sColors = sColors.substring(0,sColors.length()-4);
+            
+            cs.sendMessage("");
+            
+            cs.sendMessage("Available colors: "+sColors);
             
             return true;
         }
