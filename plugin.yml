@@ -10,4 +10,4 @@ permissions:
     lurker.lurk:
       description: Allows player to lurk
     lurker.manage:
-      description: Notifies players about updates, reserved for management subcommands
+      description: Notifies player about updates, reserved for future management subcommands
