@@ -36,7 +36,7 @@ public class LurkerCommand implements CommandExecutor
             
             for(ChatColor cc : ChatColor.values())
             {
-                sColors += cc + cc.toString().toLowerCase() + ChatColor.WHITE + ", ";
+                sColors += cc + "&"+cc.toString().toLowerCase() + ChatColor.WHITE + ", ";
             }
             
             sColors = sColors.substring(0,sColors.length()-4);
