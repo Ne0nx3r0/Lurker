@@ -1,12 +1,13 @@
 package com.ne0nx3r0.lurker;
 
+import com.ne0nx3r0.lurker.Lurker;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-class LurkerCommand implements CommandExecutor
+public class LurkerCommand implements CommandExecutor
 {
     private final Lurker plugin;
     
@@ -35,7 +36,9 @@ class LurkerCommand implements CommandExecutor
             return true;
         }
         
-        if(args[0].equalsIgnoreCase("all"))
+        String sTo = args[0];
+        
+        if(sTo.equalsIgnoreCase("all"))
         {
             String sMessage = "";
             for(int i = 1;i<args.length;i++)
@@ -45,7 +48,7 @@ class LurkerCommand implements CommandExecutor
 
             sMessage = replaceColorCodes(sMessage);
 
-            cs.sendMessage(ChatColor.GREEN+"Sent to all: "+ChatColor.RESET+sMessage);
+            cs.sendMessage(ChatColor.GREEN+"To all: "+ChatColor.RESET+sMessage);
             
             plugin.getServer().broadcastMessage(sMessage);
             
@@ -53,15 +56,19 @@ class LurkerCommand implements CommandExecutor
         }
         else
         {
-            Player p = plugin.getServer().getPlayer(args[0]);
+            Player p = plugin.getServer().getPlayer(sTo);
 
             if(p == null)
             {
+                String sToLower = sTo.toLowerCase();
+                
                 for(Player player : plugin.getServer().getOnlinePlayers())
                 {
-                    if(player.getName().toLowerCase().contains(args[0].toLowerCase()))
+                    if(player.getName().toLowerCase().contains(sToLower))
                     {
                         p = player;
+                        
+                        break;
                     }
                 }
             }
@@ -77,13 +84,14 @@ class LurkerCommand implements CommandExecutor
                 sMessage = replaceColorCodes(sMessage);
 
                 p.sendMessage(sMessage);
+                
                 cs.sendMessage(ChatColor.GREEN+"To "+ChatColor.WHITE+p.getName()+ChatColor.GREEN+": "+ChatColor.RESET+sMessage);
             
                 return true;
             }
             else
             {
-                cs.sendMessage(ChatColor.RED+"Player "+args[0]+" not found.");
+                cs.sendMessage(ChatColor.RED+"Player "+sTo+" not found.");
                 
                 return true;
             }
