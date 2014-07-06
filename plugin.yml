@@ -1,6 +1,6 @@
 name: Lurker
 main: com.ne0nx3r0.lurker.Lurker
-version: '1.0'
+version: '1.2'
 database: false
 description: Lurker!
 commands:
@@ -9,5 +9,3 @@ commands:
 permissions:
     lurker.lurk:
       description: Allows player to lurk
-    lurker.manage:
-      description: Notifies player about updates, reserved for future management subcommands

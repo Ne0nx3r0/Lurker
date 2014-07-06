@@ -28,15 +28,22 @@ public class LurkerCommand implements CommandExecutor
         if(args.length == 0)
         {
             cs.sendMessage("Usage:");
+            cs.sendMessage("-----------------------------------------------");
             cs.sendMessage("/lurk <playername> Message here");
-            cs.sendMessage("/lurk <playername> &DARK_REDColored message!");
             cs.sendMessage("/lurk all Message!");
             
             String sColors = "";
             
             for(ChatColor cc : ChatColor.values())
             {
-                sColors += cc + "&"+cc.toString().toLowerCase() + ChatColor.WHITE + ", ";
+                if(cc.equals(ChatColor.MAGIC))
+                {
+                    sColors += ChatColor.RESET + "&"+cc.name().toLowerCase() + ", ";
+                }
+                else
+                {
+                    sColors += cc + "&"+cc.name().toLowerCase() + ChatColor.RESET + ", ";
+                }
             }
             
             sColors = sColors.substring(0,sColors.length()-4);
@@ -53,6 +60,7 @@ public class LurkerCommand implements CommandExecutor
         if(sTo.equalsIgnoreCase("all"))
         {
             String sMessage = "";
+            
             for(int i = 1;i<args.length;i++)
             {
                 sMessage += args[i]+" ";
@@ -114,7 +122,7 @@ public class LurkerCommand implements CommandExecutor
     {
         for(ChatColor cc : ChatColor.values())
         {
-            str = str.replace("&"+cc.name(), cc.toString());
+            str = str.replace("&"+cc.name().toLowerCase(), cc.toString());
         }
         
         return str;
